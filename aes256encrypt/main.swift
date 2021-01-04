@@ -44,12 +44,12 @@ if (CommandLine.arguments[1] == "enc") {
 } else {
     
     guard let combinedData = Data(base64Encoded: CommandLine.arguments[2]) else {
-        print("Error0: Failed to retrieve combined data!")
+        print("Error: Failed to retrieve combined data!")
         exit(1)
     }
     
     guard let sealed = try? AES.GCM.SealedBox(combined: combinedData) else {
-        print("Error1: Failed to construct a sealed box from the data!")
+        print("Error: Failed to construct a sealed box from the data!")
         exit(1)
     }
     
