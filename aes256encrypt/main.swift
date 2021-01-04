@@ -8,9 +8,9 @@
 import Foundation
 import CryptoKit
 
-let usage = "./aes256encrypt [enc/dec] [message] [key]"
+let usage = "./aes256encrypt [--enc/dec] [message] [key]"
 
-if CommandLine.arguments.count < 3 || (CommandLine.arguments[1] != "enc" && CommandLine.arguments[1] != "dec") {
+if CommandLine.arguments.count < 3 || (CommandLine.arguments[1] != "--enc" && CommandLine.arguments[1] != "--dec") {
     print(usage)
     exit(1)
 }
@@ -27,7 +27,7 @@ let keyHash = SHA256.hash(data: keyBytes)
 
 let symmetricKey = SymmetricKey(data: keyHash)
 
-if (CommandLine.arguments[1] == "enc") {
+if (CommandLine.arguments[1] == "--enc") {
     
     guard let sealed = try? AES.GCM.seal(messageBytes, using: symmetricKey) else {
         print("Error: Failed to encrypt!")
